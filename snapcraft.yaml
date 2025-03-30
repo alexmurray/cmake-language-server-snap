@@ -11,6 +11,7 @@ description: |
    - Documentation for commands and variables on hover
    - Formatting (by cmake-format)
 
+license: MIT
 grade: devel
 confinement: strict
 base: core24
