@@ -1,0 +1,40 @@
+name: cmake-language-server
+version: 0.1.11
+summary: CMake LSP Implementation.
+description: |
+  CMake LSP Implementation.
+
+  Alpha Stage, work in progress.
+
+  ** Features **
+   - Builtin command completion
+   - Documentation for commands and variables on hover
+   - Formatting (by cmake-format)
+
+grade: devel
+confinement: strict
+base: core24
+
+apps:
+  cmake-language-server:
+    command: bin/snapcraft-preload $SNAP/bin/cmake-language-server
+    plugs:
+      - home
+
+parts:
+  cmake-language-server:
+    plugin: python
+    source: https://github.com/regen100/cmake-language-server.git
+    source-tag: v$SNAPCRAFT_PROJECT_VERSION
+
+  snapcraft-preload:
+    source: https://github.com/sergiusens/snapcraft-preload.git
+    plugin: cmake
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/
+    build-packages:
+      - on amd64:
+          - gcc-multilib
+          - g++-multilib
+    stage-packages:
+      - lib32stdc++6
