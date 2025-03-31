@@ -9,7 +9,7 @@ description: |
   ** Features **
    - Builtin command completion
    - Documentation for commands and variables on hover
-   - Formatting (by cmake-format)
+   - Formatting (by cmake-format as bundled in the snap)
 
 license: MIT
 grade: devel
@@ -22,11 +22,27 @@ apps:
     plugs:
       - home
 
+  cmake-format:
+    command: usr/bin/cmake-format
+    plugs:
+      - home
+    environment:
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages
+
+  cmake-lint:
+    command: bin/snapcraft-preload $SNAP/usr/bin/cmake-lint
+    plugs:
+      - home
+    environment:
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages
+
 parts:
   cmake-language-server:
     plugin: python
     source: https://github.com/regen100/cmake-language-server.git
     source-tag: v$SNAPCRAFT_PROJECT_VERSION
+    stage-packages:
+      - cmake-format
 
   snapcraft-preload:
     source: https://github.com/sergiusens/snapcraft-preload.git
