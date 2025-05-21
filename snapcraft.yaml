@@ -40,7 +40,7 @@ parts:
   cmake-language-server:
     plugin: python
     source: https://github.com/regen100/cmake-language-server.git
-    source-tag: v$SNAPCRAFT_PROJECT_VERSION
+    source-tag: v$CRAFT_PROJECT_VERSION
     stage-packages:
       - cmake-format
 
