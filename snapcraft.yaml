@@ -21,6 +21,8 @@ apps:
     command: bin/snapcraft-preload $SNAP/bin/cmake-language-server
     plugs:
       - home
+    environment:
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages
 
   cmake-format:
     command: usr/bin/cmake-format
